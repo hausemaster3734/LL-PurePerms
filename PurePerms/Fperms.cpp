@@ -19,7 +19,6 @@ vector<AvailableCommandsPacket::OverloadData> Fperms::getOverloads()
 CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<string> c_arg)
 {
     int counter = 0, cmd_counter = 0;
-   // YAML::Node config = YAML::LoadFile("plugins/PurePerms/config.yml");
     if (provider == "yaml")
     {
         if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.fperms") || checkPermission(pl_sender->getName(), "*")))
@@ -58,7 +57,7 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
             {
                 if (fperms_counter[pl_sender->getName()] > size || fperms_counter[pl_sender->getName()] == 0)
                     fperms_counter[pl_sender->getName()] = 0;
-                int id;
+                int id = 0;
                 for (int i = 1; i < size; ++i)
                 {
                     vector<wstring> tmp;
@@ -76,10 +75,10 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
                     vector<wstring> tmp(beg, end);
                     output_messages.push_back(tmp);
                 }
-                wstring out = L"§2[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(fperms_counter[pl_sender->getName()] + 1)) + L" / " + utf8_to_wstring(to_string((int)size + 1)) + L"):\n";
                 for (auto c : output_messages[fperms_counter[pl_sender->getName()]])
-                    out += L"§2[PurePerms] - " + c + L"\n";
+                    out += L"§a[PurePerms] - " + c + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 fperms_counter[pl_sender->getName()] += 1;
             }
@@ -87,7 +86,7 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
             {
                 if (fperms_counter[pl_sender->getName()] > size)
                     fperms_counter[pl_sender->getName()] = 0;
-                int id;
+                int id = 0;
                 for (int i = 0; i < size; ++i)
                 {
                     vector<wstring> tmp;
@@ -98,10 +97,10 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
                     }
                     output_messages.push_back(tmp);
                 }
-                wstring out = L"§2[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(fperms_counter[pl_sender->getName()] + 1)) + L" / " + utf8_to_wstring(to_string((int)size + 1)) + L"):\n";
                 for (auto c : output_messages[fperms_counter[pl_sender->getName()]])
-                    out += L"§2[PurePerms] - " + c + L"\n";
+                    out += L"§a[PurePerms] - " + c + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 fperms_counter[pl_sender->getName()] += 1;
             }
@@ -115,10 +114,10 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
                    tmp.push_back(perms[i]);
                 }
                 output_messages.push_back(tmp);
-                wstring out = L"§2[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all plugin permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(fperms_counter[pl_sender->getName()]+1)) + L" / " + utf8_to_wstring(to_string((int)size)) + L"):\n";
                 for (auto c : output_messages[fperms_counter[pl_sender->getName()]-1])
-                    out += L"§2[PurePerms] - " + c + L"\n";
+                    out += L"§a[PurePerms] - " + c + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 fperms_counter[pl_sender->getName()] += 1;
             }
@@ -166,8 +165,8 @@ CommandResult Fperms::execute(Player* pl_sender, string alias_used, vector<strin
                     vector<wstring> tmp;
                     for (int j = 0; j < 5; ++j)
                     {
-                        id++;
                         tmp.push_back(perms[id]);
+                        id++;
                     }
                     output_messages.push_back(tmp);
                 }

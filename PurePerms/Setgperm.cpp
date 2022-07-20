@@ -1,21 +1,21 @@
-#include "Defgroup.h"
+#include "Setgperm.h"
 #include "PPGroup.h"
 #include <MC/Actor.hpp>
 #include <Utils/StringHelper.h>
 
-Defgroup::Defgroup(string command_name) : ICommand(std::move(command_name), "Allows you to set default group.", "/defgroup <group>", { "defgr" }) {}
+Setgperm::Setgperm(string command_name) : ICommand(std::move(command_name), "Adds a permission to the group.", "/setgperm <group> <permission>", {"sgperm"}) {}
 
-vector<AvailableCommandsPacket::OverloadData> Defgroup::getOverloads()
+vector<AvailableCommandsPacket::OverloadData> Setgperm::getOverloads()
 {
     OverloadBuilder builder = OverloadBuilder();
     builder.addData("group");
+    builder.addData("permission");
     builder._break();
     return builder.payload();
 }
 
-CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<string> c_arg)
+CommandResult Setgperm::execute(Player* pl_sender, string alias_used, vector<string> c_arg)
 {
-   // YAML::Node config = YAML::LoadFile("plugins/PurePerms/config.yml");
     if (provider == "yaml")
     {
         vector<PPGroup> groups;
@@ -24,9 +24,9 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
         {
             groups.push_back(gr.as<PPGroup>());
         }
-        if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.defgroup") || checkPermission(pl_sender->getName(), "*")))
+        if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.setgperm") || checkPermission(pl_sender->getName(), "*")))
         {
-            if (c_arg.empty())
+            if (c_arg.empty() || c_arg.size()==1)
             {
                 pl_sender->sendText("Alias used: " + alias_used);
                 return CommandResult::INVALID_ARGS;
@@ -35,17 +35,7 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
             {
                 if (groups[i].getName() == c_arg[0])
                 {
-                    groups[i].setDefault(1);
-                    {
-                        for (int j = 0; j < groups.size(); ++j)
-                        {
-                            if (groups[j].isDefault == 1 && groups[j].getName() != c_arg[0])
-                            {
-                                groups[j].setDefault(1);
-                                break;
-                            }
-                        }
-                    }
+                    groups[i].addPermission(c_arg[1]);
                     node.reset();
                     for (auto g : groups)
                         node.push_back(g);
@@ -53,7 +43,7 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
                     ofstream fout("plugins/PurePerms/groups.yml");
                     fout << node;
                     fout.close();
-                    pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Default group has been succefully set to " + str2wstr(c_arg[0]) + L"."));
+                    pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Added permission " + str2wstr(c_arg[1]) + L" to the group successfully."));
                     return CommandResult::SUCCESS;
                 }
             }
@@ -62,7 +52,7 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
         }
         else if (!pl_sender->isPlayer())
         {
-            if (c_arg.empty())
+            if (c_arg.empty() || c_arg.size() == 1)
             {
                 cout << "Alias used: " + alias_used << endl;
                 return CommandResult::INVALID_ARGS;
@@ -71,17 +61,7 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
             {
                 if (groups[i].getName() == c_arg[0])
                 {
-                    groups[i].setDefault(1);
-                    {
-                        for (int j = 0; j < groups.size(); ++j)
-                        {
-                            if (groups[j].isDefault == 1 && groups[j].getName() != c_arg[0])
-                            {
-                                groups[j].setDefault(1);
-                                break;
-                            }
-                        }
-                    }
+                    groups[i].addPermission(c_arg[1]);
                     node.reset();
                     for (auto g : groups)
                         node.push_back(g);
@@ -89,17 +69,18 @@ CommandResult Defgroup::execute(Player* pl_sender, string alias_used, vector<str
                     ofstream fout("plugins/PurePerms/groups.yml");
                     fout << node;
                     fout.close();
-                    cout << "[PurePerms] Default group has been succefully set to " + c_arg[0] + ".\n";
+                    wcout << L"[PurePerms] Added permission " + str2wstr(c_arg[1]) + L" to the group successfully.\n";
                     return CommandResult::SUCCESS;
                 }
             }
-            wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exist." << endl;
+            wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exist.\n";
             return CommandResult::ERRORR;
         }
+        return CommandResult::FAILED_PERMISSION;
     }
     else if (provider == "json")
     {
-        //TODO Алексе
+        //Алексе
+        //PS Пример с правами и отделения ввода с консоли и ввода с игры смотри выше
     }
-    return CommandResult::FAILED_PERMISSION;
 }

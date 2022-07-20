@@ -20,7 +20,7 @@ CommandResult RmParent::execute(Player* pl_sender, string alias_used, vector<str
     vector<PPGroup> groups;
     if (provider == "yaml")
     {
-        if (c_arg.empty())
+        if (c_arg.empty() || c_arg.size() == 1)
         {
             pl_sender->sendText("Alias used: " + alias_used);
             return CommandResult::INVALID_ARGS;
@@ -39,7 +39,7 @@ CommandResult RmParent::execute(Player* pl_sender, string alias_used, vector<str
                     auto gr = getGroup(c_arg[1]);
                     if (gr.getName() == "")
                     {
-                        pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exists."));
+                        pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[1]) + L" does NOT exists."));
                         return CommandResult::ERRORR;
                     }
                     groups[i].removeGroup(c_arg[1]);
@@ -50,16 +50,16 @@ CommandResult RmParent::execute(Player* pl_sender, string alias_used, vector<str
                     ofstream fout("plugins/PurePerms/groups.yml");
                     fout << node;
                     fout.close();
-                    pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] Removed " + str2wstr(c_arg[1]) + L" from group " + str2wstr(c_arg[0]) + L" inheritance list."));
+                    pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Removed " + str2wstr(c_arg[1]) + L" from group " + str2wstr(c_arg[0]) + L"'s inheritance list."));
                     return CommandResult::SUCCESS;
                 }
             }
-            pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[1]) + L" does NOT exists."));
+            pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exists."));
             return CommandResult::ERRORR;
         }
         else if (!pl_sender->isPlayer())
         {
-            if (c_arg.empty())
+            if (c_arg.empty() || c_arg.size() == 1)
             {
                 cout << "Alias used: " + alias_used << endl;
                 return CommandResult::INVALID_ARGS;
@@ -71,7 +71,7 @@ CommandResult RmParent::execute(Player* pl_sender, string alias_used, vector<str
                     auto gr = getGroup(c_arg[1]);
                     if (gr.getName() == "")
                     {
-                        wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exists." << endl;
+                        wcout << L"[PurePerms] Group " + str2wstr(c_arg[1]) + L" does NOT exists." << endl;
                         return CommandResult::ERRORR;
                     }
                     groups[i].removeGroup(c_arg[1]);
@@ -82,11 +82,11 @@ CommandResult RmParent::execute(Player* pl_sender, string alias_used, vector<str
                     ofstream fout("plugins/PurePerms/groups.yml");
                     fout << node;
                     fout.close();
-                    std::cerr << wstring_to_utf8(L"[PurePerms] Removed " + str2wstr(c_arg[1]) + L" from group " + str2wstr(c_arg[0]) + L" inheritance list.") << endl;
+                    std::cerr << wstring_to_utf8(L"[PurePerms] Removed " + str2wstr(c_arg[1]) + L" from group " + str2wstr(c_arg[0]) + L"'s inheritance list.") << endl;
                     return CommandResult::SUCCESS;
                 }
             }
-            wcout << L"[PurePerms] Group " + str2wstr(c_arg[1]) + L" does NOT exists." << endl;
+            wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" does NOT exists." << endl;
             return CommandResult::ERRORR;
         }
     }

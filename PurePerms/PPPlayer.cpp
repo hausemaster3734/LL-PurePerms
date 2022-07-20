@@ -14,6 +14,21 @@ void PPPlayer::setNickname(string nick)
 	nickname = nick;
 }
 
+void PPPlayer::setPassword(string password)
+{
+	noeulPW = password;
+}
+
+void PPPlayer::setPrefix(string pref)
+{
+	prefix = pref;
+}
+
+void PPPlayer::setSuffix(string suff)
+{
+	suffix = suff;
+}
+
 PPGroup PPPlayer::getGroup()
 {
 	return ::getGroup(group);
@@ -74,6 +89,9 @@ YAML::Node YAML::convert<PPPlayer>::encode(const PPPlayer& rhs)
 	Node node;
 	node["userName"] = ((PPPlayer)rhs).getNickname();
 	node["group"] = ((PPPlayer)rhs).getGroup().getName();
+	node["prefix"] = ((PPPlayer)rhs).getPrefix();
+	node["suffix"] = ((PPPlayer)rhs).getSuffix();
+	node["noeulPW"] = ((PPPlayer)rhs).getPassword();
 	if (((PPPlayer)rhs).getPermissions().size() == 0)
 		node["permissions"] = vector<string>();
 	else
@@ -92,6 +110,9 @@ bool YAML::convert<PPPlayer>::decode(const Node& node, PPPlayer& rhs)
 {
 	rhs.setNickname(node["userName"].as<string>());
 	rhs.setGroup(node["group"].as<string>());
+	rhs.setPrefix(node["prefix"].as<string>());
+	rhs.setSuffix(node["suffix"].as<string>());
+	rhs.setPassword(node["noeulPW"].as<string>());
 	for (auto v : node["permissions"].as<vector<string>>())
 		rhs.addPermission(v);
 	rhs.setTime(node["time"].as<int>());

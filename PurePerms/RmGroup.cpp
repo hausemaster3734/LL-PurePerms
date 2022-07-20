@@ -54,7 +54,7 @@ CommandResult RmGroup::execute(Player* pl_sender, string alias_used, vector<stri
             ofstream fout("plugins/PurePerms/groups.yml");
             fout << node;
             fout.close();
-            pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] Removed " + utf8_to_wstring(c_arg[0]) + L" from the group list successfully."));
+            pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Removed " + utf8_to_wstring(c_arg[0]) + L" from the group list successfully."));
             return CommandResult::SUCCESS;
         }
         else if (!pl_sender->isPlayer())

@@ -22,6 +22,13 @@ void CommandAPI::onEnable() {
     local->addCommand(new PPReload("ppreload"));
     local->addCommand(new RmGroup("rmgroup"));
     local->addCommand(new RmParent("rmparent"));
+    local->addCommand(new PPSudo("ppsudo"));
+    local->addCommand(new Setgperm("setgperm"));
+    local->addCommand(new Setgroup("setgroup"));
+    local->addCommand(new Setuperm("setuperm"));
+    local->addCommand(new Unsetgperm("unsetgperm"));
+    local->addCommand(new Unsetuperm("unsetuperm"));
+    local->addCommand(new Usrinfo("usrinfo"));
     local->init();
     EventListener *listener = new EventListener();
     listener->init();

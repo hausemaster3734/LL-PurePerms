@@ -3,7 +3,7 @@
 #include <MC/Actor.hpp>
 #include <Utils/StringHelper.h>
 
-PPReload::PPReload(string command_name) : ICommand(std::move(command_name), "	Reloads all PurePerms configurations.", "/ppreload", { "preload" }) {}
+PPReload::PPReload(string command_name) : ICommand(std::move(command_name), "Reloads all PurePerms configurations.", "/ppreload", { "preload" }) {}
 
 vector<AvailableCommandsPacket::OverloadData> PPReload::getOverloads()
 {
@@ -20,7 +20,9 @@ CommandResult PPReload::execute(Player* pl_sender, string alias_used, vector<str
         provider = config["provider"].as<string>();
         superadmin_ranks = config["superadmin-ranks"].as<vector<string>>();
         disable_op = config["disable-op"].as<bool>();
-        pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] All plugin configurations have been successfully reloaded."));
+        noeul_sixtyfour = config["enable-noeul-sixtyfour"].as<bool>();
+        noeul_minimum_pw_length = config["noeul-minimum-pw-length"].as<int>();
+        pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] All plugin configurations have been successfully reloaded."));
         return CommandResult::SUCCESS;
     }
     else if (!pl_sender->isPlayer())
@@ -29,6 +31,8 @@ CommandResult PPReload::execute(Player* pl_sender, string alias_used, vector<str
         provider = config["provider"].as<string>();
         superadmin_ranks = config["superadmin-ranks"].as<vector<string>>();
         disable_op = config["disable-op"].as<bool>();
+        noeul_sixtyfour = config["enable-noeul-sixtyfour"].as<bool>();
+        noeul_minimum_pw_length = config["noeul-minimum-pw-length"].as<int>();
         cout << "[PurePerms] All plugin configurations have been successfully reloaded.\n";
         return CommandResult::SUCCESS;
     }

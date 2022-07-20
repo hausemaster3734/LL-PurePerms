@@ -14,7 +14,6 @@ void PPGroup::setName(string _name)
 	}
 	string oldName = name;
 	name = _name;
-	//YAML::Node config = YAML::LoadFile("plugins/PurePerms/config.yml");
 	if (provider == "yaml")
 	{
 		ifstream test("plugins/PurePerms/groups.yml");

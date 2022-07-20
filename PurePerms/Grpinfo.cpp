@@ -35,24 +35,24 @@ CommandResult Grpinfo::execute(Player* pl_sender, string alias_used, vector<stri
             {
                 if (g.name == c_arg[0])
                 {
-                    wstring out = L"§2[PurePerms] -- Group Information for " + str2wstr(c_arg[0]) + L" --\n";
-                    out += L"ALIAS: " + str2wstr(g.alias) + L"\n";
-                    out += L"DEFAULT: " + str2wstr(to_string(g.isDefault)) + L"\n";
-                    out += L"PARENTS: ";
+                    wstring out = L"§a[PurePerms] -- Group Information for " + str2wstr(c_arg[0]) + L" --\n";
+                    out += L"§a[PurePerms] ALIAS: §b§2" + str2wstr(g.alias) + L"\n";
+                    out += L"§a[PurePerms] DEFAULT: §b§2" + str2wstr(to_string(g.isDefault)) + L"\n";
+                    out += L"§a[PurePerms] PARENTS: §b§2";
                     int cnt = 0;
                     for (auto gs : g.getInheritances())
                     {
                         if (cnt == 0)
                         {
-                            out += str2wstr(gs) + L"\n";
+                            out += str2wstr(gs) + L", ";
                         }
                         else
                         {
-                            out += L"§2[PurePerms] " + str2wstr(gs) + L"\n";
+                            out += L"§b§2" + str2wstr(gs) + L", ";
                         }
                         cnt++;
                     }
-                    wstring output(out.begin(), out.end() - 1);
+                    wstring output(out.begin(), out.end() - 2);
                     pl_sender->sendText(wstring_to_utf8(output));
                     return CommandResult::SUCCESS;
                 }
@@ -73,23 +73,23 @@ CommandResult Grpinfo::execute(Player* pl_sender, string alias_used, vector<stri
                 if (g.name == c_arg[0])
                 {
                     wstring out = L"[PurePerms] -- Group Information for " + str2wstr(c_arg[0]) + L" --\n";
-                    out += L"ALIAS: " + str2wstr(g.alias) + L"\n";
-                    out += L"DEFAULT: " + str2wstr(to_string(g.isDefault)) + L"\n";
-                    out += L"PARENTS: ";
+                    out += L"[PurePerms] ALIAS: " + str2wstr(g.alias) + L"\n";
+                    out += L"[PurePerms] DEFAULT: " + str2wstr(to_string(g.isDefault)) + L"\n";
+                    out += L"[PurePerms] PARENTS: ";
                     int cnt = 0;
                     for (auto gs : g.getInheritances())
                     {
                         if (cnt == 0)
                         {
-                            out += str2wstr(gs) + L"\n";
+                            out += str2wstr(gs) + L", ";
                         }
                         else
                         {
-                            out += L"[PurePerms] " + str2wstr(gs) + L"\n";
+                            out += str2wstr(gs) + L", ";
                         }
                         cnt++;
                     }
-                    wstring output(out.begin(), out.end() - 1);
+                    wstring output(out.begin(), out.end() - 2);
                     std::wcout << output << endl;
                     return CommandResult::SUCCESS;
                 }

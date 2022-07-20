@@ -25,7 +25,7 @@ CommandResult Groups::execute(Player* pl_sender, string alias_used, vector<strin
         }
         if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.groups") || checkPermission(pl_sender->getName(), "*")))
         {
-            wstring out = L"§2[PurePerms] All registered groups: ";
+            wstring out = L"§a[PurePerms] All registered groups: ";
             for (auto c : groups)
             {
                 out += str2wstr(c.getName()) + L", ";

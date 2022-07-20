@@ -17,7 +17,7 @@ CommandResult PPInfo::execute(Player* pl_sender, string alias_used, vector<strin
 {
     if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.ppinfo") || checkPermission(pl_sender->getName(), "*")))
     {
-        pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] This server is using PurePerms v1.0.0 by TheMrEnderBro(MCBEPluginModer) & wellhause & KocTu4eK"));
+        pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] This server is using PurePerms v1.0.0 by TheMrEnderBro(MCBEPluginModer) & wellhause & KocTu4eK"));
         return CommandResult::SUCCESS;
     }
     else if (!pl_sender->isPlayer())

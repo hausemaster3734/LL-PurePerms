@@ -22,6 +22,13 @@
 #include "PPReload.h"
 #include "Rmgroup.h"
 #include "RmParent.h"
+#include "PPSudo.h"
+#include "Setgperm.h"
+#include "Setgroup.h"
+#include "Setuperm.h"
+#include "Unsetgperm.h"
+#include "Unsetuperm.h"
+#include "Usrinfo.h"
 #include "EventListener.h"
 
 class CommandAPI {

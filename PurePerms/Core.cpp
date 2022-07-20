@@ -45,21 +45,28 @@ std::wstring utf8_to_wstring(const std::string& str)
 
 bool checkPermission(string nick,string perm)
 {
-    auto pl = getPlayer(nick);
-    for (auto g : pl.getPermissions())
+    if (provider == "yaml")
     {
-        if (g == perm)
+        auto pl = getPlayer(nick);
+        for (auto g : pl.getPermissions())
         {
-            return 1;
+            if (g == perm)
+            {
+                return 1;
+            }
         }
+        auto gr = pl.getGroup();
+        for (auto g : gr.getAllPermissions())
+        {
+            if (g == perm)
+            {
+                return 1;
+            }
+        }
+        return 0;
     }
-    auto gr = pl.getGroup();
-    for (auto g : gr.getAllPermissions())
+    else if (provider == "json")
     {
-        if (g == perm)
-        {
-            return 1;
-        }
+
     }
-    return 0;
 }

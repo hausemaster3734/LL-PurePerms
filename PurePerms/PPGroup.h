@@ -9,15 +9,6 @@
 #include "Core.h"
 using namespace std;
 
-template<typename...Arg>
-struct Prc
-{
-	Prc() : mems(std::make_tuple(Arg()...)) {}
-
-	std::tuple<Arg...> mems;
-
-};
-
 class PPGroup;
 
 PPGroup getGroup(string name);

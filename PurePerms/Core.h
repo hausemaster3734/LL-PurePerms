@@ -28,5 +28,9 @@ extern vector<PPPlayer*> players;
 extern string provider;
 extern vector<string> superadmin_ranks;
 extern bool disable_op;
+extern bool noeul_sixtyfour;
+extern int noeul_minimum_pw_length;
+
+extern map<string,bool> db;
 
 bool checkPermission(string nick,string perm);

@@ -3,7 +3,7 @@
 #include <MC/Actor.hpp>
 #include <Utils/StringHelper.h>
 
-Listgperms::Listgperms(string command_name) : ICommand(std::move(command_name), "Shows a list of all permissions from a group.", "/Listgperms <group> <page>", { "lgp" }) {}
+Listgperms::Listgperms(string command_name) : ICommand(std::move(command_name), "Shows a list of all permissions from a group.", "/listgperms <group> <page>", { "lgp" }) {}
 
 vector<AvailableCommandsPacket::OverloadData> Listgperms::getOverloads()
 {
@@ -61,10 +61,10 @@ CommandResult Listgperms::execute(Player* pl_sender, string alias_used, vector<s
                     pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Maximum pages = " + str2wstr(to_string(output_messages.size())) + L"."));
                     return CommandResult::ERRORR;
                 }
-                wstring out = L"§2[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(atoi(c_arg[1].c_str()))) + L" / " + utf8_to_wstring(to_string((int)size + 1)) + L"):\n";
                 for (auto c : output_messages[atoi(c_arg[1].c_str()) - 1])
-                    out += L"§2[PurePerms] - " + str2wstr(c) + L"\n";
+                    out += L"§a[PurePerms] - " + str2wstr(c) + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 return CommandResult::SUCCESS;
             }
@@ -86,10 +86,10 @@ CommandResult Listgperms::execute(Player* pl_sender, string alias_used, vector<s
                     pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Maximum pages = " + str2wstr(to_string(output_messages.size())) + L"."));
                     return CommandResult::ERRORR;
                 }
-                wstring out = L"§2[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(atoi(c_arg[1].c_str()))) + L" / " + utf8_to_wstring(to_string((int)size + 1)) + L"):\n";
                 for (auto c : output_messages[atoi(c_arg[1].c_str()) - 1])
-                    out += L"§2[PurePerms] - " + str2wstr(c) + L"\n";
+                    out += L"§a[PurePerms] - " + str2wstr(c) + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 return CommandResult::SUCCESS;
             }
@@ -106,10 +106,10 @@ CommandResult Listgperms::execute(Player* pl_sender, string alias_used, vector<s
                     tmp.push_back(gro.permissions[i]);
                 }
                 output_messages.push_back(tmp);
-                wstring out = L"§2[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
+                wstring out = L"§a[PurePerms] List of all group permissions from " + utf8_to_wstring(c_arg[0]);
                 out += L"(" + utf8_to_wstring(to_string(atoi(c_arg[1].c_str()))) + L" / 1):\n";
                 for (auto c : output_messages[atoi(c_arg[1].c_str())-1])
-                    out += L"§2[PurePerms] - " + str2wstr(c) + L"\n";
+                    out += L"§a[PurePerms] - " + str2wstr(c) + L"\n";
                 pl_sender->sendText(wstring_to_utf8(out));
                 return CommandResult::SUCCESS;
             }

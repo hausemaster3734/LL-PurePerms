@@ -16,11 +16,10 @@ vector<AvailableCommandsPacket::OverloadData> AddParent::getOverloads()
 
 CommandResult AddParent::execute(Player* pl_sender, string alias_used, vector<string> c_arg)
 {
-   // YAML::Node config = YAML::LoadFile("plugins/PurePerms/config.yml");
     vector<PPGroup> groups;
     if (provider == "yaml")
     {
-        if (c_arg.empty())
+        if (c_arg.empty() || c_arg.size() == 1)
         {
             pl_sender->sendText("Alias used: " + alias_used);
             return CommandResult::INVALID_ARGS;
@@ -40,7 +39,7 @@ CommandResult AddParent::execute(Player* pl_sender, string alias_used, vector<st
                     {
                         if (gs == c_arg[1])
                         {
-                            pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[0]) + L" already inherits" + str2wstr(c_arg[1]) + L"."));
+                            pl_sender->sendText(wstring_to_utf8(L"§4[PurePerms] Group " + str2wstr(c_arg[0]) + L" already inherits " + str2wstr(c_arg[1]) + L"."));
                             return CommandResult::ERRORR;
                         }
                     }
@@ -58,7 +57,7 @@ CommandResult AddParent::execute(Player* pl_sender, string alias_used, vector<st
                     ofstream fout("plugins/PurePerms/groups.yml");
                     fout << node;
                     fout.close();
-                    pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] Added " + str2wstr(c_arg[1]) + L" to group " + str2wstr(c_arg[0]) + L"'s inheritance list."));
+                    pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Added " + str2wstr(c_arg[1]) + L" to group " + str2wstr(c_arg[0]) + L"'s inheritance list."));
                     return CommandResult::SUCCESS;
                 }
             }
@@ -67,7 +66,7 @@ CommandResult AddParent::execute(Player* pl_sender, string alias_used, vector<st
         }
         else if (!pl_sender->isPlayer())
         {
-            if (c_arg.empty())
+            if (c_arg.empty() || c_arg.size() == 1)
             {
                 cout << "Alias used: " + alias_used << endl;
                 return CommandResult::INVALID_ARGS;
@@ -80,7 +79,7 @@ CommandResult AddParent::execute(Player* pl_sender, string alias_used, vector<st
                     {
                         if (gs == c_arg[1])
                         {
-                            wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" already inherits" + str2wstr(c_arg[1]) + L"." << endl;
+                            wcout << L"[PurePerms] Group " + str2wstr(c_arg[0]) + L" already inherits " + str2wstr(c_arg[1]) + L"." << endl;
                             return CommandResult::ERRORR;
                         }
                     }

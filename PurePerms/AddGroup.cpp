@@ -15,7 +15,6 @@ vector<AvailableCommandsPacket::OverloadData> AddGroup::getOverloads()
 
 CommandResult AddGroup::execute(Player* pl_sender, string alias_used, vector<string> c_arg) 
 {
-   // YAML::Node config = YAML::LoadFile("plugins/PurePerms/config.yml");
     if (provider == "yaml")
     {
         vector<PPGroup> groups;
@@ -48,7 +47,7 @@ CommandResult AddGroup::execute(Player* pl_sender, string alias_used, vector<str
             ofstream fout("plugins/PurePerms/groups.yml");
             fout << node;
             fout.close();
-            pl_sender->sendText(wstring_to_utf8(L"§2[PurePerms] Added " + utf8_to_wstring(c_arg[0]) + L" to the group list successfully."));
+            pl_sender->sendText(wstring_to_utf8(L"§a[PurePerms] Added " + utf8_to_wstring(c_arg[0]) + L" to the group list successfully."));
             return CommandResult::SUCCESS;
         }
         else if (!pl_sender->isPlayer())
