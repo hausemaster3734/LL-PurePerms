@@ -1,7 +1,7 @@
 //
 // Created by pepef on 13.07.2022.
 //
-
+#include "pch.h"
 #include "EventListener.h"
 
 THook(void*, "?write@AvailableCommandsPacket@@UEBAXAEAVBinaryStream@@@Z", void* dktapps, void* SOFe3) {

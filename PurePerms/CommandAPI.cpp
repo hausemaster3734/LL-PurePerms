@@ -1,7 +1,7 @@
 //
 // Created by pepef on 13.07.2022.
 //
-
+#include "pch.h"
 #include "CommandAPI.h"
 
 static void* command_manager;

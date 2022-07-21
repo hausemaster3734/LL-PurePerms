@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "FPerms.h"
 #include "PPGroup.h"
 #include <MC/Actor.hpp>

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Setgroup.h"
 #include "PPGroup.h"
 #include <MC/Actor.hpp>
@@ -28,7 +29,7 @@ CommandResult Setgroup::execute(Player* pl_sender, string alias_used, vector<str
         }
         if (pl_sender->isPlayer() && (checkPermission(pl_sender->getName(), "pperms.command.setgroup") || checkPermission(pl_sender->getName(), "*")))
         {
-            if (c_arg.empty() || c_arg.size() == 1)
+            if (c_arg.empty() || c_arg.size() == 1 || c_arg.size() == 2)
             {
                 pl_sender->sendText("Alias used: " + alias_used);
                 return CommandResult::INVALID_ARGS;
@@ -83,7 +84,7 @@ CommandResult Setgroup::execute(Player* pl_sender, string alias_used, vector<str
         }
         else if (!pl_sender->isPlayer())
         {
-            if (c_arg.empty() || c_arg.size() == 1)
+            if (c_arg.empty() || c_arg.size() == 1 || c_arg.size() == 2)
             {
                 cout << "Alias used: " + alias_used << endl;
                 return CommandResult::INVALID_ARGS;
