@@ -15,6 +15,9 @@
     <Filter Include="Исходные файлы\CommandAPI">
       <UniqueIdentifier>{5fc9ea83-3bc6-4b4f-b53b-3271dacf5dcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Utils">
+      <UniqueIdentifier>{0e84e0fc-9385-4548-8c59-c9b70016473b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -92,9 +95,6 @@
     <ClInclude Include="Usrinfo.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="utils\Utils.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="CommandAPI\CommandAPI.h">
       <Filter>Файлы заголовков\CommandAPI</Filter>
     </ClInclude>
@@ -106,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="CommandAPI\OverloadBuilder.hpp">
       <Filter>Файлы заголовков\CommandAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\Utils.hpp">
+      <Filter>Файлы заголовков\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
