@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "command/OverloadBuilder.hpp"
-#include "command/ICommand.hpp"
+#include "CommandAPI/OverloadBuilder.hpp"
+#include "CommandAPI/ICommand.hpp"
 
 class PPReload : public ICommand {
 public:

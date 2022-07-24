@@ -83,8 +83,8 @@
     <LibraryPath>C:\Users\EnderBro\source\repos\PurePerms\PurePerms\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\EnderBro\source\repos\PurePerms\PurePerms\Header;C:\Users\EnderBro\source\repos\PurePerms\PurePerms\Header\third-party;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\EnderBro\source\repos\PurePerms\PurePerms\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)SDK\Header;$(SolutionDir)SDK\Header\third-party;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)SDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -181,15 +181,14 @@
   <ItemGroup>
     <ClInclude Include="Addgroup.h" />
     <ClInclude Include="AddParent.h" />
-    <ClInclude Include="CommandAPI.h" />
-    <ClInclude Include="command\CommandManager.h" />
-    <ClInclude Include="command\ICommand.hpp" />
-    <ClInclude Include="command\OverloadBuilder.hpp" />
+    <ClInclude Include="CommandAPI\CommandAPI.h" />
+    <ClInclude Include="CommandAPI\CommandManager.h" />
+    <ClInclude Include="CommandAPI\ICommand.hpp" />
+    <ClInclude Include="CommandAPI\OverloadBuilder.hpp" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Defgroup.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="FPerms.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="Groups.h" />
     <ClInclude Include="Grpinfo.h" />
     <ClInclude Include="Listgperms.h" />
@@ -214,8 +213,10 @@
   <ItemGroup>
     <ClCompile Include="AddGroup.cpp" />
     <ClCompile Include="AddParent.cpp" />
-    <ClCompile Include="CommandAPI.cpp" />
-    <ClCompile Include="command\CommandManager.cpp" />
+    <ClCompile Include="CommandAPI\CommandAPI.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="CommandAPI\CommandManager.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Defgroup.cpp" />
     <ClCompile Include="dllmain.cpp" />

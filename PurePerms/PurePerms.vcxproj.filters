@@ -9,15 +9,14 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Файлы заголовков\CommandAPI">
+      <UniqueIdentifier>{a17de5a9-2cc9-4ad3-8274-42545b70d53e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\CommandAPI">
+      <UniqueIdentifier>{5fc9ea83-3bc6-4b4f-b53b-3271dacf5dcd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -30,22 +29,7 @@
     <ClInclude Include="PPPlayer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CommandAPI.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="EventListener.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\Utils.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="command\ICommand.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="command\OverloadBuilder.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="command\CommandManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Addgroup.h">
@@ -108,6 +92,21 @@
     <ClInclude Include="Usrinfo.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="utils\Utils.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandAPI\CommandAPI.h">
+      <Filter>Файлы заголовков\CommandAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandAPI\CommandManager.h">
+      <Filter>Файлы заголовков\CommandAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandAPI\ICommand.hpp">
+      <Filter>Файлы заголовков\CommandAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandAPI\OverloadBuilder.hpp">
+      <Filter>Файлы заголовков\CommandAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -126,12 +125,6 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="EventListener.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandAPI.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="command\CommandManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="AddGroup.cpp">
@@ -193,6 +186,12 @@
     </ClCompile>
     <ClCompile Include="Usrinfo.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandAPI\CommandAPI.cpp">
+      <Filter>Исходные файлы\CommandAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandAPI\CommandManager.cpp">
+      <Filter>Исходные файлы\CommandAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@
 #include <MC/Player.hpp>
 #include <EventAPI.h>
 
-#include "CommandAPI.h"
+#include "CommandAPI/CommandAPI.h"
 
 class EventListener {
 public:

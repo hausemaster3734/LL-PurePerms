@@ -1,6 +1,4 @@
-﻿
-// dllmain.cpp : Определяет точку входа для приложения DLL.
-#include "pch.h"
+﻿#include "pch.h"
 #include "Core.h"
 #include <LLAPI.h>
 #include <ScheduleAPI.h>
